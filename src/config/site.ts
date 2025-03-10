@@ -94,17 +94,17 @@ import {
   
   export const team = [
     {
-      name: "Terry Ward",
+      name: "Mark Workman",
       role: "Founder & CEO",
       image: "https://xzk52n11vc.ufs.sh/f/aSu1qOlYpgs5IZTzDDAvt1ns6dULejNrKFhcSBzAmyaXiQ0Y"
     },
     {
-      name: "Terry Ward",
+      name: "Mark Workman",
       role: "Frontend Developer",
       image: "https://xzk52n11vc.ufs.sh/f/aSu1qOlYpgs5IZTzDDAvt1ns6dULejNrKFhcSBzAmyaXiQ0Y"
     },
     {
-      name: "Terry Ward",
+      name: "Mark Workman",
       role: "Backend Developer",
       image: "https://xzk52n11vc.ufs.sh/f/aSu1qOlYpgs5IZTzDDAvt1ns6dULejNrKFhcSBzAmyaXiQ0Y"
     },
