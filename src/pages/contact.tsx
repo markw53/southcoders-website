@@ -1,5 +1,5 @@
 // pages/contact.tsx
-import { useRef, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { motion, useAnimation } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { useForm } from 'react-hook-form'
@@ -26,7 +26,7 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { useToast } from '@/components/ui/use-toast'
-import { services, budgetRanges } from '@/config/site'
+import { services } from '@/config/site'
 
 const formSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters'),
@@ -209,71 +209,74 @@ function FAQ() {
 }
 
 export default function ContactPage() {
-  const heroRef = useRef(null)
-  const formRef = useRef(null)
-  const faqRef = useRef(null)
-  
-  const heroControls = useAnimation()
-  const formControls = useAnimation()
-  const faqControls = useAnimation()
-  
-  const heroInView = useInView(heroRef, { once: true })
-  const formInView = useInView(formRef, { once: true })
-  const faqInView = useInView(faqRef, { once: true })
+        
+    const heroControls = useAnimation()
+    const formControls = useAnimation()
+    const faqControls = useAnimation()
+    
+    const { ref: heroInViewRef, inView: heroInView } = useInView({ triggerOnce: true })
+    const { ref: formInViewRef, inView: formInView } = useInView({ triggerOnce: true })
+    const { ref: faqInViewRef, inView: faqInView } = useInView({ triggerOnce: true })
 
-  // Animation effects
-  useEffect(() => {
-    if (heroInView) heroControls.start({ opacity: 1, y: 0 })
-  }, [heroControls, heroInView])
+    // Animation effects
+    useEffect(() => {
+        if (heroInView) heroControls.start({ opacity: 1, y: 0 })
+    }, [heroControls, heroInView])
 
-  useEffect(() => {
-    if (formInView) formControls.start({ opacity: 1, x: 0 })
-  }, [formControls, formInView])
+    useEffect(() => {
+        if (formInView) formControls.start({ opacity: 1, x: 0 })
+    }, [formControls, formInView])
 
-  useEffect(() => {
-    if (faqInView) faqControls.start({ opacity: 1, x: 0 })
-  }, [faqControls, faqInView])
+    useEffect(() => {
+        if (faqInView) faqControls.start({ opacity: 1, x: 0 })
+    }, [faqControls, faqInView])
 
-  return (
-    <div className="flex flex-col gap-16 md:gap-24">
-      {/* Hero Section */}
-      <motion.section
-        ref={heroRef}
-        initial={{ opacity: 0, y: 50 }}
-        animate={heroControls}
-        transition={{ duration: 1 }}
-      >
-        <section className="container py-12 md:py-24 px-4 sm:px-6">
-          <div className="max-w-3xl mx-auto md:mx-0">
-            <h1 className="text-4xl font-bold tracking-tight mb-6">Get in Touch</h1>
-            <p className="text-xl text-muted-foreground">
-              Ready to start your next project? We're here to help bring your vision to life.
-            </p>
-          </div>
-        </section>
-      </motion.section>
+    return (
+        <div className="flex flex-col gap-16 md:gap-24">
+            {/* Hero Section */}
+            <motion.section
+                ref={heroInViewRef}
+                initial={{ opacity: 0, y: 50 }}
+                animate={heroControls}
+                transition={{ duration: 1 }}
+            >
+                <section className="container py-12 md:py-24 px-4 sm:px-6">
+                    <div className="max-w-3xl mx-auto md:mx-0">
+                        <h1 className="text-4xl font-bold tracking-tight mb-6">Get in Touch</h1>
+                        <p className="text-xl text-muted-foreground">
+                            Ready to start your next project? We&apos;re here to help bring your vision to life.
+                        </p>
+                    </div>
+                </section>
+            </motion.section>
 
-      {/* Form and FAQ Section */}
-      <section className="container pb-16 px-4 sm:px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          <motion.div
-            ref={formRef}
-            initial={{ opacity: 0, x: -50 }}
-            animate={formControls}
-            transition={{ duration: 0.5 }}
-          >
-            <ContactForm />
-          </motion.div>
-          <motion.div
-            ref={faqRef}
-            initial={{ opacity: 0, x: 50 }}
-            animate={faqControls}
-            transition={{ duration: 0.5, delay: 0.5 }}
-          >
-            <FAQ />
-          </motion.div>
+            {/* Form and FAQ Section */}
+            <section className="container pb-16 px-4 sm:px-6">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                    <motion.div
+                        ref={formInViewRef}
+                        initial={{ opacity: 0, x: -50 }}
+                        animate={formControls}
+                        transition={{ duration: 0.5 }}
+                    >
+                        <ContactForm />
+                    </motion.div>
+                    <motion.div
+                        ref={faqInViewRef}
+                        initial={{ opacity: 0, x: 50 }}
+                        animate={faqControls}
+                        transition={{ duration: 0.5, delay: 0.5 }}
+                    >
+                        <FAQ />
+                    </motion.div>
+                </div>
+            </section>
         </div>
-      </section>
-    </div>
-  )
+    )
 }
+
+function useState(initialValue: boolean): [boolean, React.Dispatch<React.SetStateAction<boolean>>] {
+    const [state, setState] = React.useState(initialValue)
+    return [state, setState]
+}
+

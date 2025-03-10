@@ -1,5 +1,5 @@
 // pages/services.tsx
-import { useRef, useEffect } from 'react'
+import { useEffect } from 'react'
 import Link from 'next/link'
 import { motion, useAnimation } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
