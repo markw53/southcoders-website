@@ -4,13 +4,13 @@
 import { useRef, useEffect } from 'react'
 import { motion, useAnimation } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent } from '@/components/ui/card'
+// import { Button } from '@/components/ui/button'
+// import { Card, CardContent } from '@/components/ui/card'
 import { siteConfig, services, stats, team } from '@/config/site'
-import StatsSection from '@/components/StatsSection'
-import ServicesSection from '@/components/ServicesSection'
-import Link from 'next/link'
-import TeamSection from '@/components/TeamSection'
+import { StatsSection } from '@/components/StatsSection'
+import { ServicesSection } from '@/components/ServicesSection'
+// import Link from 'next/link'
+import { TeamSection } from '@/components/TeamSection'
 
 function HeroSection() {
   const sectionRef = useRef(null)
@@ -50,9 +50,9 @@ export default function Home() {
   return (
     <main className="flex flex-col gap-16 md:gap-24">
       <HeroSection />
-      <ServicesSection />
-      <StatsSection />
-      <TeamSection />
+      <ServicesSection services={services} />
+      <StatsSection stats={stats} />
+      <TeamSection team={team} />
     </main>
   )
 }
